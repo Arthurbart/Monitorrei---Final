@@ -1,0 +1,31 @@
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+.dropdown-item.text-danger {
+    color: red !important;
+}
+
+.btn-redondo {
+    border-radius: 50%;
+    position: fixed;
+    top: 85%;
+    left: 92%;
+    width: 50px;
+    height: 50px;
+}
