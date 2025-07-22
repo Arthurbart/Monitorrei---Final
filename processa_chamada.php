@@ -4,7 +4,7 @@ include('conexao.php');
 if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['id_monitoria'])) {
     echo "
     <script>
-        alert('Usuario nao autenticado ou monitoria nao existente');
+        alert('Usuario não autenticado ou monitoria não existente');
         window.history.back();
     </script>";
     exit();

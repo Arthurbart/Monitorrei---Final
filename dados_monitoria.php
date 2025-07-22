@@ -10,6 +10,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             m.sala, 
             m.curso, 
             m.dias, 
+            m.status,
             m.usuario_id,
             m.img_banner,
             u.foto,
@@ -29,6 +30,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $sala = htmlspecialchars($monitoria['sala']);
         $dias = htmlspecialchars($monitoria['dias']);
         $horario = htmlspecialchars($monitoria['horario']);
+        $status = htmlspecialchars($monitoria['status']);
         $id_monitor = htmlspecialchars($monitoria['usuario_id']);
         $foto_monitor = htmlspecialchars($monitoria['foto']);
         $img_banner = htmlspecialchars($monitoria['img_banner']);

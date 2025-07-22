@@ -35,6 +35,14 @@
     <?php
     include('conexao.php');
     include('navbar.php');
+    if ($_SESSION['cargo'] != 'admin') {
+        echo "
+            <script>
+                alert('Não possui permissão para acessar...');
+                window.location.href = 'monitorias.php';
+            </script>";
+        exit();
+    }
     ?>
     <div class="container mt-5">
         <ul class="nav nav-tabs" id="monitoriaTabs" role="tablist">

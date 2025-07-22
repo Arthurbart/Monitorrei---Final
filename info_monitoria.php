@@ -204,43 +204,6 @@
                         </div>
                 ";
 
-                // --- Buscar respostas do monitor (id_pai = id do pedido original)
-                $sql_respostas = "SELECT pc.*, u.nome, u.foto 
-                                  FROM pedidos_conteudo pc
-                                  JOIN usuario u ON pc.usuario_id = u.id
-                                  WHERE pc.id_pai = '$pedido_id'
-                                  ORDER BY pc.id ASC";
-
-                $respostas = $conn->query($sql_respostas);
-
-                if ($respostas && $respostas->num_rows > 0) {
-                  echo "<div class='mt-4 ps-4'>";
-                  while ($resposta = $respostas->fetch_assoc()) {
-                    $resposta_nome = htmlspecialchars($resposta['nome']);
-                    $resposta_foto = $resposta['foto'];
-                    $resposta_conteudo = htmlspecialchars($resposta['conteudo']);
-                    $resposta_data = $resposta['data_pedido'] ? date('d/m/Y', strtotime($resposta['data_pedido'])) : '';
-                    if ($resposta_nome == $_SESSION['nome_usuario']) {
-                      $resposta_nome = 'Você';
-                    }
-                    echo "
-                      <div class='d-flex justify-content-between align-items-start mb-3'>
-                        <div class='d-flex'>
-                          <img src='$resposta_foto' class='rounded-circle me-2' width='30' height='30' alt=''>
-                          <div>
-                            <strong>$resposta_nome</strong><br>
-                            <small class='text-muted'>$resposta_data</small>
-                            <p class='mb-0'>$resposta_conteudo</p>
-                          </div>
-                        </div>
-
-                      </div>
-                    ";
-                  }
-                  echo "</div>";
-                }
-
-                // Formulário para responder
                 echo "
                   <div id='resposta-form-$pedido_id' class='mt-3 d-none'>
                     <form action='processa_resposta.php' method='POST'>
@@ -252,10 +215,65 @@
                 ";
 
 
+
+                $sql_respostas = "SELECT pc.*, u.nome, u.foto 
+                                  FROM pedidos_conteudo pc
+                                  JOIN usuario u ON pc.usuario_id = u.id
+                                  WHERE pc.id_pai = '$pedido_id'
+                                  ORDER BY pc.id ASC";
+
+                $respostas = $conn->query($sql_respostas);
+
+                if ($respostas && $respostas->num_rows > 0) {
+                  echo "<div class='mt-4 ps-4'>";
+
+                  while ($resposta = $respostas->fetch_assoc()) {
+                    $resposta_nome = htmlspecialchars($resposta['nome']);
+                    $resposta_foto = $resposta['foto'];
+                    $resposta_conteudo = htmlspecialchars($resposta['conteudo']);
+                    $resposta_data = $resposta['data_pedido'] ? date('d/m/Y', strtotime($resposta['data_pedido'])) : '';
+                    if ($resposta_nome == $_SESSION['nome_usuario']) {
+                      $resposta_nome = 'Você';
+                    }
+                    echo "
+                        <div class='d-flex justify-content-between align-items-start mb-3'>
+                          <div class='d-flex'>
+                            <img src='$resposta_foto' class='rounded-circle me-2' width='30' height='30' alt=''>
+                            <div>
+                              <strong>$resposta_nome</strong><br>
+                              <small class='text-muted'>$resposta_data</small>
+                              <p class='mb-0'>$resposta_conteudo</p>
+                            </div>
+                          </div>
+
+
+                    ";
+                    if ($resposta['usuario_id'] == $_SESSION['usuario_id']) {
+                      echo "
+                        <div class='dropdown'>
+                          <button class='btn btn-sm btn-light dropdown-toggle' type='button' id='dropdownMenuButton{$resposta['id']}' data-bs-toggle='dropdown' aria-expanded='false'>
+                            <i class='bi bi-three-dots-vertical'></i>
+                          </button>
+                          <ul class='dropdown-menu dropdown-menu-end' aria-labelledby='dropdownMenuButton{$resposta['id']}'>
+                            <li>
+                              <form action='excluir_pedido.php' method='POST' style='margin: 0;'>
+                                <input type='hidden' name='pedido_id' value='{$resposta['id']}'>
+                                <button class='dropdown-item text-danger' type='submit' onclick=\"return confirm('Tem certeza que deseja excluir este aviso?');\">Excluir Resposta</button>
+                              </form>
+                            </li>
+                          </ul>
+                      </div>";
+
+                  }
+                  echo"</div>";
+                  }
+                  echo "</div>";
+                }
+
                 echo "
-                      </div> <!-- fecha card-body -->
-                    </div> <!-- fecha card -->
-                  </div> <!-- fecha container -->
+                      </div>
+                    </div>
+                  </div>
                 ";
               }
             } else {
@@ -266,8 +284,6 @@
               ";
             }
             ?>
-
-
           </div>
 
         </div>

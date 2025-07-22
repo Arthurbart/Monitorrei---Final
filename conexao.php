@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['usuario_id'])) {
     echo "
     <script>
-        alert('Usuario não logado');
+        alert('Usuário não logado');
           window.location.href = 'index.html';
     </script>";
     exit();

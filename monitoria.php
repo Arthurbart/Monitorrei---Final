@@ -3,6 +3,14 @@
 <?php 
     include('conexao.php');
     include('dados_monitoria.php');
+    if ($status == 'desativado') {
+        echo "
+            <script>
+                alert('Monitoria não está ativa');
+                window.location.href = 'monitorias.php';
+            </script>";
+        exit();
+    }
 ?>
 <head>
     <meta charset="UTF-8">

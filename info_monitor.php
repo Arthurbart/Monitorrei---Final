@@ -342,15 +342,15 @@
                       </div>";
                   }
 
-                  echo "</div>"; // fecha d-flex de resposta
+                  echo "</div>"; 
                 }
-                echo "</div>"; // fecha container das respostas
+                echo "</div>"; 
               }
 
               echo "
-                  </div> <!-- fecha card-body -->
-                </div> <!-- fecha card -->
-              </div> <!-- fecha container do pedido -->
+                  </div> 
+                </div> 
+              </div>
               ";
             }
           } else {
