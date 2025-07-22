@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/06/2025 às 21:54
+-- Tempo de geração: 22/07/2025 às 13:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -66,7 +66,9 @@ CREATE TABLE `documentos` (
 --
 
 INSERT INTO `documentos` (`id`, `titulo`, `tipo`, `doc`, `descricao`, `data_postagem`, `usuario_id`, `monitoria_id`) VALUES
-(7, '', 'Conteúdo', 0x315f34365f464c45582d424f582e706466, 'Doc de flex-box pra quem precisar pra prova', '2025-06-03', 1, 46);
+(7, '', 'Conteúdo', 0x315f34365f464c45582d424f582e706466, 'Doc de flex-box pra quem precisar pra prova', '2025-06-03', 1, 46),
+(10, '', 'Atividade', 0x315f34375f4564756361c3a7c3a36f2046c3ad736963612e706466, 'exercicios de cabeamento estruturado pra prova do segundo ano terça', '2025-07-21', 3, 47),
+(11, '', 'Atividade', 0x385f34365f49505634202d20536567756e646f20496e666f2e706466, 'vdvdvdf', '2025-07-21', 1, 46);
 
 -- --------------------------------------------------------
 
@@ -130,10 +132,17 @@ INSERT INTO `pedidos_conteudo` (`id`, `usuario_id`, `monitoria_id`, `conteudo`, 
 (54, 1, 50, 'Não entendo nada de algoritmos cara, me help pls', '2025-06-03', 'aceito', NULL),
 (55, 1, 50, 'não tenho pressa, apenas me diga quando devo ir a sua monitoria\r\n', '2025-06-03', 'null', 54),
 (56, 3, 44, 'Se você puder passar algo sobre as funções hidrogenadas da quimica organica eu agradeceria mtt', '2025-06-03', 'Em Aguardo', NULL),
-(57, 3, 46, 'Poderia me ajudar c umas duvidas em php?', '2025-06-03', 'Em Aguardo', NULL),
+(57, 3, 46, 'Poderia me ajudar c umas duvidas em php?', '2025-06-03', 'negado', NULL),
 (58, 3, 49, 'Essa quinta irei la, estou com duvidas em botanica, pode me ajudar?', '2025-06-03', 'Em Aguardo', NULL),
 (59, 3, 50, 'Preciso de muuuuita ajuda em matrizes, tenho a proxima segunda livre', '2025-06-03', 'aceito', NULL),
-(60, 17, 50, 'pode vir mano, terça feira tá livre pra ti', '2025-06-03', 'null', 54);
+(60, 17, 50, 'pode vir mano, terça feira tá livre pra ti', '2025-06-03', 'null', 54),
+(62, 1, 46, 'não', '2025-06-23', 'null', 57),
+(63, 3, 46, 'ok\r\n', '2025-06-23', 'null', 57),
+(64, 1, 46, 'kkkkkkkkk capaiz', '2025-07-07', 'null', 57),
+(71, 1, 51, 'você também trabalha com a matéria de Carnes?', '2025-07-21', 'Em Aguardo', NULL),
+(72, 3, 46, 'brigadaum', '2025-07-21', 'null', 57),
+(73, 3, 52, 'voce possui o livro didatico?', '2025-07-21', 'Em Aguardo', NULL),
+(74, 3, 46, 'tudo bem?', '2025-07-21', 'Em Aguardo', NULL);
 
 -- --------------------------------------------------------
 
@@ -158,7 +167,9 @@ INSERT INTO `presencas` (`id`, `usuario_id`, `monitoria_id`, `data_presenca`, `f
 (14, 17, 46, '2025-06-03', 'Conversou bastante, xiiiii'),
 (15, 4, 46, '2025-06-03', 'Aprendeu muito'),
 (16, 14, 46, '2025-06-05', 'Agregou muito'),
-(17, 6, 47, '2025-06-03', 'Estudou muito');
+(19, 6, 47, '2025-05-22', 'Aluno muito interessado tinha algumas dificuldades que foram saneadas'),
+(20, 13, 47, '2025-05-22', 'Muitas duvidas, vira na proxima monitoria para terminar com suas duvidas\r\n'),
+(21, 6, 46, '2025-07-22', 'ok');
 
 -- --------------------------------------------------------
 
@@ -181,7 +192,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `senha`, `curso`, `nome`, `matricula`, `cargo`, `foto`) VALUES
-(1, 'Bernardo00', 'informatica', 'Arthur Bernardo Barth', 2023319513, 'admin', 'imgs/usuario/2023319513_FTperfil'),
+(1, 'Bernardo00', 'informatica', 'Arthur Bernardo Barth', 2023319513, 'admin', 'imgs/usuario/default.jpg'),
 (3, 'juver', 'informatica', 'Felipe Juver', 2023123123, 'aluno', 'imgs/usuario/2023123123_FTperfil'),
 (4, 'ferri', 'Alimentos', 'Bernardo Ferri', 2023319700, 'docente', 'imgs/usuario/2023319700_FTperfil'),
 (5, 'helena', 'Alimentos', 'Helena Tamiozzo', 2022315206, 'aluno', 'imgs/usuario/default.jpg'),
@@ -255,13 +266,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `avisos`
 --
 ALTER TABLE `avisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `monitorias`
@@ -273,13 +284,13 @@ ALTER TABLE `monitorias`
 -- AUTO_INCREMENT de tabela `pedidos_conteudo`
 --
 ALTER TABLE `pedidos_conteudo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de tabela `presencas`
 --
 ALTER TABLE `presencas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
